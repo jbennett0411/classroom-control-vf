@@ -50,8 +50,8 @@ node default {
 #  ensure   => present,
 #  provider => gem,
 #  }
-  exec { '/bin/echo cowsay Welcome to ${::fqdn}! > /etc/motd':
-  path => '/etc/motd',
+  exec { "cowsay 'Welcome to ${::fqdn}!' > /etc/motd": 
+  create => '/etc/motd',
   }
   # This is where you can declare classes for all nodes.
   # Example:
