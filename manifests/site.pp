@@ -58,7 +58,7 @@ node default {
   file_line { 'etc_hosts':
   ensure  => present,
   path    => '/etc/hosts',
-  line    => 'testing.puppetlabs.vm 127.0.0.1',
+  line    => '127.0.0.1 testing.puppetlabs.vm',
   }
   # This is where you can declare classes for all nodes.
   # Example:
