@@ -52,6 +52,7 @@ node default {
 #  }
   exec { 'cowsay':
   command => "cowsay 'Welcome to ${::fqdn}!' > /etc/motd",
+  path    => ['/usr/local/bin','/usr/bin','/bin'],  
   creates  => '/etc/motd',
   }
   # This is where you can declare classes for all nodes.
