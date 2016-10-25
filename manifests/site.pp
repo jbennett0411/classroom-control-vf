@@ -51,7 +51,7 @@ node default {
 #  provider => gem,
 #  }
   exec { 'cowsay':
-  command => "cowsay 'Welcome to ${::fqdn}!' > /etc/motd"
+  command => "cowsay 'Welcome to ${::fqdn}!' > /etc/motd",
   create  => '/etc/motd',
   }
   # This is where you can declare classes for all nodes.
