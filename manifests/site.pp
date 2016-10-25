@@ -50,8 +50,8 @@ node default {
 #  ensure   => present,
 #  provider => gem,
 #  }
-  exec { 'cowsay':,
-  command => :cowsay 'Welcome to ${::fqdn}!' > /etc/motd"
+  exec { 'cowsay':
+  command => "cowsay 'Welcome to ${::fqdn}!' > /etc/motd"
   path    => '/usr/local/bin',
   create  => '/etc/motd',
   }
