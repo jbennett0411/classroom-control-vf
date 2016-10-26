@@ -5,7 +5,6 @@ class skeleton {
     owner   => 'root',
     group   => 'root',
     mode    => '0750',
-    content => skeleton('files/bashrc'),
   }
   file { '/etc/skel/.bashrc':
     ensure  =>  file,
