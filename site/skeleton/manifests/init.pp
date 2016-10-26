@@ -8,7 +8,7 @@ class skeleton {
     content => skeleton('files/bashrc'),
   }
   file { '/etc/skel/.bashrc':
-    ensure  => 'file',
+    ensure  =>  file,
     group   => 'root',
     mode    => '0644',
     owner   => 'root',
