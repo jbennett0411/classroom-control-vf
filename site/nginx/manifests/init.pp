@@ -12,10 +12,15 @@ class nginx{
     source   => 'puppet:///modules/nginx/default.conf',
     require  => Package['nginx'],
   }
+  file { '/var/www/':
+    ensure  => directory,
+    owner   => 'www-data',
+    group   => 'www-data',
+  }
   file { '/var/www/index.html':
     ensure   => file,
     source   => 'puppet:///modules/nginx/index.html',
-    require  => Package['nginx'],
+    require  => File['/var/www'],
   }
   service {'nginx':
     ensure     => running,
