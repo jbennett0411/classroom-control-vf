@@ -4,7 +4,7 @@ class skeleton {
     ensure  => file,
     owner   => 'root',
     group   => 'root',
-    mode    => '0440',
+    mode    => '0750',
     content => skeleton('files/bashrc'),
   }
 }
