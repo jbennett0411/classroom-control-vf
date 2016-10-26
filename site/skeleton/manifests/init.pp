@@ -1,6 +1,6 @@
 #Manages /etc/skel
 class skeleton {
-  file { '/etc/skel/.bashrc':
+  file { '/etc/skel':
     ensure  => file,
     owner   => 'root',
     group   => 'root',
