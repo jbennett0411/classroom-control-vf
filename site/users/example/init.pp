@@ -1,0 +1,2 @@
+#user class
+include users
