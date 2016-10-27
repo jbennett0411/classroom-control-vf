@@ -41,7 +41,7 @@ class nginx{
     require  => Package[$nginx_pkg],
   }
   file { $default_conf:
-    content => epp($default_conf),
+    content => epp($default_epp),
     require  => Package[$nginx_pkg],
   }
   file { $doc_root:
