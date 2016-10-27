@@ -1,8 +1,9 @@
 class aliases (
     $admin = 'root',
 ) {
-    # uses $admin to build the aliases file
-    file { '/etc/aliases':
+    # uses $admin to build the aliases file'
+    notify { "The value of admin is ${admin}": }    # uses $admin to build the aliases file
+        file { '/etc/aliases':
         ensure  => file,
         owner   => 'root',
         group   => 'root',
