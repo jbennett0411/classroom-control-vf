@@ -33,7 +33,6 @@ class nginx{
   service {'nginx':
     ensure     => running,
     enable     => true,
-    user       => $service_user,
     subscribe  => File['/etc/nginx/nginx.conf'],
   }
 }
