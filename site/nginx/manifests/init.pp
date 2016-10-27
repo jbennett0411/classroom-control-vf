@@ -1,10 +1,11 @@
 class nginx{
   case $::osfamily {
-  'debian': {
-    $service_user = 'www-data'
-  }
-  'redhat': {
-    $service_user = 'nginx'
+    'debian': {
+      $service_user = 'www-data'
+    }
+    'redhat': {
+      $service_user = 'nginx'
+    }
   }  
   File {
     ensure => file,
