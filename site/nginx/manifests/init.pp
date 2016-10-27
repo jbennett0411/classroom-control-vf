@@ -1,4 +1,11 @@
 class nginx{
+  case $::osfamily {
+  'debian': {
+    $service_user = 'www-data'
+  }
+  'redhat': {
+    $service_user = 'nginx'
+  }  
   File {
     ensure => file,
     owner  => 'root',
@@ -25,6 +32,7 @@ class nginx{
   service {'nginx':
     ensure     => running,
     enable     => true,
+    user       => $service_user,
     subscribe  => File['/etc/nginx/nginx.conf'],
   }
 }
