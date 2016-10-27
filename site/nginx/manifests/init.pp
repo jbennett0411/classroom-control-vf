@@ -10,6 +10,8 @@ class nginx{
       $nginx_epp = 'nginx/nginx.conf.epp'
       $default_epp = 'nginx/default.conf.epp'
       $index_epp = 'nginx/index.html.epp'
+      $root = "root"
+      $perm = "0664"
       }
     'redhat': {
       $nginx_pkg = 'nginx'
@@ -21,13 +23,15 @@ class nginx{
       $nginx_epp = 'nginx/nginx.conf.epp'
       $default_epp = 'nginx/default.conf.epp'
       $index_epp = 'nginx/index.html.epp'
+      $root = "root"
+      $perm = "0664"
       }
   }  
   File {
     ensure => file,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0644',
+    owner  => $root,
+    group  => $root,
+    mode   => $perm,
   }
   package {$nginx_pkg:
     ensure  => present,
