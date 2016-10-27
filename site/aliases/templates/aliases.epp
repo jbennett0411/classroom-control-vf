@@ -10,6 +10,7 @@
 # Basic system aliases -- these MUST be present.
 mailer-daemon:	postmaster
 postmaster:	root
+$ADMIN=root
 
 # General redirections for pseudo accounts.
 bin:		root
