@@ -27,19 +27,22 @@ class nginx{
     ensure  => present,
   }
   file { $nginx_conf:
-    source   => 'puppet:///modules/nginx/nginx.conf',
+    #source   => 'puppet:///modules/nginx/nginx.conf',
+    content => epp('nginx/nginx.conf.epp'),
     require  => Package[$nginx_pkg],
   }
   file { $default_conf:
-    source   => 'puppet:///modules/nginx/default.conf',
+    #source   => 'puppet:///modules/nginx/default.conf',
+    content => epp('nginx/default.conf.epp'),
     require  => Package[$nginx_pkg],
   }
   file { $doc_root:
     ensure  => directory,
   }
   file { $index_html:
-    source   => 'puppet:///modules/nginx/index.html',
-  }
+    #source   => 'puppet:///modules/nginx/index.html',
+    content => epp('nginx/index.html.epp'),
+    }
   service {$nginx_service:
     ensure     => running,
     enable     => true,
