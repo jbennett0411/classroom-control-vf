@@ -10,7 +10,7 @@ define users::managed_user {
     ensure => present,
   }
   
-  file { "/home/$title
+  file { "/home/$title":
     ensure => directory,
     owner  => $title,
   }
