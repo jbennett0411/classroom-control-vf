@@ -7,6 +7,9 @@ class nginx{
       $default_conf = '/etc/nginx/conf.d/default.conf'
       $doc_root = '/var/www/'
       $index_html = '/var/www/index.html'
+      $nginx_epp = 'nginx/nginx.conf.epp'
+      $default_epp = 'nginx/default.conf.epp'
+      $index_epp = 'nginx/index.html.epp'
       }
     'redhat': {
       $nginx_pkg = 'nginx'
@@ -15,6 +18,9 @@ class nginx{
       $default_conf = '/etc/nginx/conf.d/default.conf'
       $doc_root = '/var/www/'
       $index_html = '/var/www/index.html'
+      $nginx_epp = 'nginx/nginx.conf.epp'
+      $default_epp = 'nginx/default.conf.epp'
+      $index_epp = 'nginx/index.html.epp'
       }
   }  
   File {
@@ -27,21 +33,18 @@ class nginx{
     ensure  => present,
   }
   file { $nginx_conf:
-    #source   => 'puppet:///modules/nginx/nginx.conf',
-    content => epp('nginx/nginx.conf.epp'),
+    content => epp($nginx_epp),
     require  => Package[$nginx_pkg],
   }
   file { $default_conf:
-    #source   => 'puppet:///modules/nginx/default.conf',
-    content => epp('nginx/default.conf.epp'),
+    content => epp($default_conf),
     require  => Package[$nginx_pkg],
   }
   file { $doc_root:
     ensure  => directory,
   }
   file { $index_html:
-    #source   => 'puppet:///modules/nginx/index.html',
-    content => epp('nginx/index.html.epp'),
+    content => epp($index_epp),
     }
   service {$nginx_service:
     ensure     => running,
