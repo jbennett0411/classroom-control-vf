@@ -1,7 +1,6 @@
 class nginx{
   if $is_virtual == true {
-    notify { 'This is a virtual machine': }
-    notify { $osfamily: }
+    notify { 'This is a virtual machine. the os type is' $osfamily: }
   }
   File {
     ensure => file,
