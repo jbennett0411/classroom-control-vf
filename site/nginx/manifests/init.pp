@@ -1,10 +1,12 @@
 class nginx{
   case $::osfamily {
     'debian': {
-      $service_user = 'www-data'
+      $nginx_pkg = 'nginx'
+      $nginx_service = 'nginx'
     }
     'redhat': {
-      $service_user = 'nginx'
+      $nginx_pkg = 'nginx'
+      $nginx_service = 'nginx'
     }
   }  
   File {
@@ -13,7 +15,7 @@ class nginx{
     group  => 'root',
     mode   => '0644',
   }
-  package {'nginx':
+  package {$nginx_pkg:
     ensure  => present,
   }
   file { '/etc/nginx/nginx.conf':
@@ -30,7 +32,7 @@ class nginx{
   file { '/var/www/index.html':
     source   => 'puppet:///modules/nginx/index.html',
   }
-  service {'nginx':
+  service {$nginx_service:
     ensure     => running,
     enable     => true,
     subscribe  => File['/etc/nginx/nginx.conf'],
