@@ -3,11 +3,19 @@ class nginx{
     'debian': {
       $nginx_pkg = 'nginx'
       $nginx_service = 'nginx'
-    }
+      $nginx_conf = '/etc/nginx/nginx.conf'
+      $default_conf = '/etc/nginx/conf.d/default.conf'
+      $doc_root = '/var/www/'
+      $index_html = '/var/www/index.html'
+      }
     'redhat': {
       $nginx_pkg = 'nginx'
       $nginx_service = 'nginx'
-    }
+      $nginx_conf = '/etc/nginx/nginx.conf'
+      $default_conf = '/etc/nginx/conf.d/default.conf'
+      $doc_root = '/var/www/'
+      $index_html = '/var/www/index.html'
+      }
   }  
   File {
     ensure => file,
@@ -18,23 +26,23 @@ class nginx{
   package {$nginx_pkg:
     ensure  => present,
   }
-  file { '/etc/nginx/nginx.conf':
+  file { $nginx_conf:
     source   => 'puppet:///modules/nginx/nginx.conf',
-    require  => Package['nginx'],
+    require  => Package[$nginx_pkg],
   }
-  file { '/etc/nginx/conf.d/default.conf':
+  file { $default_conf:
     source   => 'puppet:///modules/nginx/default.conf',
-    require  => Package['nginx'],
+    require  => Package[$nginx_pkg],
   }
-  file { '/var/www/':
+  file { $doc_root:
     ensure  => directory,
   }
-  file { '/var/www/index.html':
+  file { $index_html:
     source   => 'puppet:///modules/nginx/index.html',
   }
   service {$nginx_service:
     ensure     => running,
     enable     => true,
-    subscribe  => File['/etc/nginx/nginx.conf'],
+    subscribe  => File[$nginx_conf],
   }
 }
