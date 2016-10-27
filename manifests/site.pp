@@ -68,9 +68,7 @@ node default {
 #  include skeleton
 include memcached
 include nginx
-#class aliases {
-#  $admin = 'root',
-#}  
+include aliases 
 if $is_virtual == true {
     notify { 'This is a virtual machine.': }
   }
