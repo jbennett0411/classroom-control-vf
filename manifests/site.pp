@@ -68,4 +68,10 @@ node default {
 #  include skeleton
 include memcached
 include nginx
+if $is_virtual == true {
+    notify { 'This is a virtual machine.': }
+  }
+  if $is_virtual == true {
+    notify { $osfamily: }
+  }
 }
