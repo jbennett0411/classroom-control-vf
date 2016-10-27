@@ -1,4 +1,9 @@
 class nginx{
+  File {
+    owner => 'root',
+    group => 'root',
+    mode  => '0644',
+  }
   package {'nginx':
     ensure  => present,
   }
@@ -14,8 +19,6 @@ class nginx{
   }
   file { '/var/www/':
     ensure  => directory,
-#    owner   => 'www-data',
-#    group   => 'www-data',
   }
   file { '/var/www/index.html':
     ensure   => file,
