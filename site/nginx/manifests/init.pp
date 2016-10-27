@@ -1,6 +1,6 @@
 class nginx{
   case $::osfamily {
-    'debian': {
+    'Debian': {
       $nginx_pkg = 'nginx'
       $nginx_service = 'nginx'
       $nginx_conf = '/etc/nginx/nginx.conf'
@@ -13,7 +13,7 @@ class nginx{
       $root = "root"
       $perm = "0664"
       }
-    'redhat': {
+    'RedHat': {
       $nginx_pkg = 'nginx'
       $nginx_service = 'nginx'
       $nginx_conf = '/etc/nginx/nginx.conf'
