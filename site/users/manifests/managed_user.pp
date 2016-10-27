@@ -10,7 +10,12 @@ define users::managed_user {
     ensure => present,
   }
   
-  file { "/home/$(title)/.ssh":
+  file { "/home/$title
+    ensure => directory,
+    owner  => $title,
+  }
+  
+  file { "/home/$title/.ssh":
     ensure => directory,
     owner  => $title,
     mode   => '0700',
