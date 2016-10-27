@@ -93,4 +93,6 @@ support:	postmaster
 decode:		root
 
 # Person who should get root's mail
-root:		<% if $alliases::admin and $alliases::admin !='root' {-%>root:<%= $alliases::admin %><% } -%>
+<% if $alliases::admin and $alliases::admin !='root' {-%>
+root:<%= $alliases::admin %>
+<% } -%>
