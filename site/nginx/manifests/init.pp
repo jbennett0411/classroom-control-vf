@@ -1,10 +1,4 @@
 class nginx{
-  if $is_virtual == true {
-    notify { 'This is a virtual machine.': }
-  }
-  if $is_virtual == true {
-    notify { $osfamily: }
-  }
   File {
     ensure => file,
     owner  => 'root',
