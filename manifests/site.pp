@@ -39,6 +39,9 @@ ini_setting { 'random ordering':
 # specified in the console for that node.
 
 node default {
+ class { 'aliases':
+    admin => 'root',
+ }
 #  file { '/etc/motd':
 #  ensure  => file,
 #  owner   => 'root',
