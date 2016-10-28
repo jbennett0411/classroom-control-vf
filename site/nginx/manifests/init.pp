@@ -1,16 +1,17 @@
 class nginx{
+  $root = undef,
   case $::osfamily {
     'debian': {
       $nginx_pkg = 'nginx'
       $nginx_service = 'nginx'
       $nginx_conf = '/etc/nginx/nginx.conf'
       $default_conf = '/etc/nginx/conf.d/default.conf'
-      $doc_root = '/var/www/'
+      $default_docroot = '/var/www/'
       $index_html = '/var/www/index.html'
       $nginx_epp = 'nginx/nginx.conf.epp'
       $default_epp = 'nginx/default.conf.epp'
       $index_epp = 'nginx/index.html.epp'
-      $root = "root"
+      #$root = "root"
       $perm = "0664"
       }
     'redhat': {
@@ -18,19 +19,24 @@ class nginx{
       $nginx_service = 'nginx'
       $nginx_conf = '/etc/nginx/nginx.conf'
       $default_conf = '/etc/nginx/conf.d/default.conf'
-      $doc_root = '/var/www/'
+      $default_docroot = '/var/www/'
       $index_html = '/var/www/index.html'
       $nginx_epp = 'nginx/nginx.conf.epp'
       $default_epp = 'nginx/default.conf.epp'
       $index_epp = 'nginx/index.html.epp'
-      $root = "root"
+      #$root = "root"
       $perm = "0664"
       }
   }  
+  $docroot = $root ? {
+    undef => $default_docroot.
+    default => $root,
+  }
+  
   File {
     ensure => file,
-    owner  => $root,
-    group  => $root,
+    owner  => root,
+    group  => root,
     mode   => $perm,
   }
   package {$nginx_pkg:
