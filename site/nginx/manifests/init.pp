@@ -9,11 +9,7 @@ class nginx (
    $index_epp = $nginx::params::index_epp,
    $nginx_service = $nginx::params::nginx_service,
    ) inherits nginx::params {   
-    $doc_root = $root ? {
-      undef => $default_docroot,
-      default => $root,
-    }
-  
+    
   File {
     ensure => file,
     owner  => root,
