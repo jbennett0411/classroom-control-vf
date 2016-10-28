@@ -69,7 +69,7 @@ node default {
 #  include role::classroom
 #  include users
 #  include skeleton
-notice => { (hiera('message')) },
+heira_include ('message')
 include memcached
 include nginx
 include aliases
