@@ -29,7 +29,7 @@ class nginx (
       $perm = "0664"
       }
   }  
-  $docroot = $root ? {
+  $doc_root = $root ? {
     undef => $default_docroot,
     default => $root,
   }
