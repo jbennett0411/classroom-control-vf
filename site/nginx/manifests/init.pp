@@ -1,6 +1,6 @@
-class nginx )
+class nginx (
   $root = undef,
-  ( {
+  ) {
   case $::osfamily {
     'debian': {
       $nginx_pkg = 'nginx'
