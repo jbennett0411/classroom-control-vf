@@ -12,9 +12,9 @@ class nginx (
     
   File {
     ensure => file,
-    owner  => root,
-    group  => root,
-    mode   => 0664,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0664',
   }
   package {$nginx_pkg:
     ensure  => present,
