@@ -1,6 +1,4 @@
 class nginx (
-  $root = undef,
-  ) (
    $doc_root = $nginx::params::default_docroot,
    $nginx_conf = $nginx::params::nginx_conf,
    $default_conf = $nginx::params::default_conf,
@@ -10,12 +8,11 @@ class nginx (
    $default_epp = $nginx::params::default_epp,
    $index_epp = $nginx::params::index_epp,
    $nginx_service = $nginx::params::nginx_service,
-   )
-{   
-   $doc_root = $root ? {
-    undef => $default_docroot,
-    default => $root,
-  }
+   ) inherits nginx::params {   
+    $doc_root = $root ? {
+      undef => $default_docroot,
+      default => $root,
+    }
   
   File {
     ensure => file,
