@@ -1,35 +1,18 @@
 class nginx (
   $root = undef,
-  ) {
-  case $::osfamily {
-    'debian': {
-      $nginx_pkg = 'nginx'
-      $nginx_service = 'nginx'
-      $nginx_conf = '/etc/nginx/nginx.conf'
-      $default_conf = '/etc/nginx/conf.d/default.conf'
-      $default_docroot = '/var/www/'
-      $index_html = '/var/www/index.html'
-      $nginx_epp = 'nginx/nginx.conf.epp'
-      $default_epp = 'nginx/default.conf.epp'
-      $index_epp = 'nginx/index.html.epp'
-      #$root = "root"
-      $perm = "0664"
-      }
-    'redhat': {
-      $nginx_pkg = 'nginx'
-      $nginx_service = 'nginx'
-      $nginx_conf = '/etc/nginx/nginx.conf'
-      $default_conf = '/etc/nginx/conf.d/default.conf'
-      $default_docroot = '/var/www/'
-      $index_html = '/var/www/index.html'
-      $nginx_epp = 'nginx/nginx.conf.epp'
-      $default_epp = 'nginx/default.conf.epp'
-      $index_epp = 'nginx/index.html.epp'
-      #$root = "root"
-      $perm = "0664"
-      }
-  }  
-  $doc_root = $root ? {
+  ) (
+   $docroot = $nginx::params::docroot,
+   $logsdir = $nginx::params::logsdir,
+   $confdir = $nginx::params::confdir,
+   $blckdir = $nginx::params::blckdir,
+   $pkgname = $nginx::params::pkgname,
+   $fileown = $nginx::params::fileown,
+   $filegrp = $nginx::params::filegrp,
+   $svcname = $nginx::params::svcname,
+   $svcuser = $nginx::params::svcuser,
+   )
+{   
+   $doc_root = $root ? {
     undef => $default_docroot,
     default => $root,
   }
