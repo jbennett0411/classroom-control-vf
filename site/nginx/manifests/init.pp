@@ -1,15 +1,15 @@
 class nginx (
   $root = undef,
   ) (
-   $docroot = $nginx::params::docroot,
-   $logsdir = $nginx::params::logsdir,
-   $confdir = $nginx::params::confdir,
-   $blckdir = $nginx::params::blckdir,
-   $pkgname = $nginx::params::pkgname,
-   $fileown = $nginx::params::fileown,
-   $filegrp = $nginx::params::filegrp,
-   $svcname = $nginx::params::svcname,
-   $svcuser = $nginx::params::svcuser,
+   $doc_root = $nginx::params::default_docroot,
+   $nginx_conf = $nginx::params::nginx_conf,
+   $default_conf = $nginx::params::default_conf,
+   $nginx_pkg = $nginx::params::nginx_pkg,
+   $index_html = $nginx::params::index_html,
+   $nginx_epp = $nginx::params::nginx_epp,
+   $default_epp = $nginx::params::default_epp,
+   $index_epp = $nginx::params::index_epp,
+   $nginx_service = $nginx::params::nginx_service,
    )
 {   
    $doc_root = $root ? {
@@ -21,7 +21,7 @@ class nginx (
     ensure => file,
     owner  => root,
     group  => root,
-    mode   => $perm,
+    mode   => 0664,
   }
   package {$nginx_pkg:
     ensure  => present,
